@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Crawler</title>
+</head>
+<body>
+    <iframe id="website-iframe" src="https://find-new-founder.vercel.app/" width="100%" height="600px"></iframe>
+
+    <script>
+        const iframe = document.getElementById('website-iframe');
+
+        // List of keys and their possible values for query parameters
+        const keysAndValues = {
+            "username": ["john_doe", "alice_smith", "bob_jones", "charlie_brown", "david_lee"],
+            "pageView": ["home", "about", "contact", "services", "portfolio"],
+            "referral": ["google", "facebook", "linkedin", "twitter", "instagram"],
+            "counter": [1, 2, 3, 4, 5],
+            "sessionId": ["abc123", "xyz456", "qwerty789", "abcd987", "lmnop321"],
+            "device": ["desktop", "mobile", "tablet", "smartwatch"],
+            "location": ["US", "UK", "Canada", "Australia", "Germany"],
+            "source": ["organic", "paid", "email", "social", "direct"],
+            "language": ["en", "es", "fr", "de", "it"],
+            "platform": ["windows", "mac", "linux", "ios", "android"],
+            "os": ["windows10", "macOS", "linux", "ios14", "android12"],
+            "browser": ["chrome", "firefox", "safari", "edge", "opera"],
+            "campaign": ["summer_sale", "winter_promo", "new_year_offer", "spring_deals"],
+            "userType": ["guest", "registered", "premium", "admin"],
+            "ageGroup": ["18-24", "25-34", "35-44", "45-54", "55+"],
+            "interest": ["tech", "fashion", "sports", "music", "travel"],
+            "deviceType": ["smartphone", "laptop", "desktop", "tablet"],
+            "city": ["New York", "Los Angeles", "London", "Berlin", "Paris"],
+            "referrer": ["search", "advertisement", "direct", "email_campaign"]
+        };
+
+        // Function to generate meaningful query parameters
+        function generateQueryParams() {
+            const selectedParams = [];
+            const keys = Object.keys(keysAndValues);
+
+            // Select 4 random keys from the list
+            for (let i = 0; i < 4; i++) {
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                const randomValue = keysAndValues[randomKey][Math.floor(Math.random() * keysAndValues[randomKey].length)];
+                selectedParams.push(`${randomKey}=${randomValue}`);
+            }
+
+            return selectedParams.join('&');
+        }
+
+        // Function to send a postMessage to the iframe
+        function sendClickMessageToIframe() {
+            iframe.contentWindow.postMessage('clickRandomElement', '*');
+            console.log('Sent click message to iframe');
+        }
+
+        // Refresh the iframe every 60 seconds and pass new query parameters
+        setInterval(() => {
+            const newQueryParams = generateQueryParams();
+            iframe.src = `https://find-new-founder.vercel.app/?${newQueryParams}`; // Update iframe src with new query params
+            console.log('Iframe refreshed with params:', newQueryParams);
+        }, 60000); // Refresh every 60 seconds
+
+        // Send the random click message to iframe every 10 seconds
+        setInterval(() => {
+            sendClickMessageToIframe();
+        }, 10000); // Click every 10 seconds
+    </script>
+</body>
+</html>
