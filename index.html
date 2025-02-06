@@ -6,10 +6,13 @@
     <title>Website Crawler</title>
 </head>
 <body>
-    <iframe id="website-iframe" src="https://find-new-founder.vercel.app/" width="100%" height="600px"></iframe>
+    <iframe id="website-iframe" src="https://maha-kumbh-2025.vercel.app/" width="100%" height="600px"></iframe>
+
+     <iframe id="website-iframe2" src="https://maha-kumbh-2025.vercel.app/" width="100%" height="600px"></iframe>
 
     <script>
         const iframe = document.getElementById('website-iframe');
+         const iframe2 = document.getElementById('website-iframe2');
 
         // List of keys and their possible values for query parameters
         const keysAndValues = {
@@ -58,14 +61,15 @@
         // Refresh the iframe every 60 seconds and pass new query parameters
         setInterval(() => {
             const newQueryParams = generateQueryParams();
-            iframe.src = `https://find-new-founder.vercel.app/?${newQueryParams}`; // Update iframe src with new query params
+            iframe.src = `https://maha-kumbh-2025.vercel.app/?${newQueryParams}`; // Update iframe src with new query params
+            iframe2.src = `https://maha-kumbh-2025.vercel.app/?${newQueryParams}`; // Update iframe src with new query params
             console.log('Iframe refreshed with params:', newQueryParams);
-        }, 60000); // Refresh every 60 seconds
+        }, 10000); // Refresh every 60 seconds
 
         // Send the random click message to iframe every 10 seconds
         setInterval(() => {
             sendClickMessageToIframe();
-        }, 10000); // Click every 10 seconds
+        }, 5000); // Click every 10 seconds
     </script>
 </body>
 </html>
