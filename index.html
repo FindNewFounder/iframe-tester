@@ -71,7 +71,7 @@
         // Refresh the iframe every 60 seconds and pass new query parameters
         setInterval(() => {
             const newQueryParams = generateQueryParams();
-            iframe.src = `https://www.youtube.com/embed/Veg7buOw71M?si=Djql9w9ga5H2_mr4`; // Update iframe src with new query params
+            iframe.src = `https://www.youtube.com/embed/Veg7buOw71M?si=Djql9w9ga5H2_mr4&autoplay=1&mute=1`; // Update iframe src with new query params
             //iframe2.src = `https://maha-kumbh-2025.vercel.app/?${newQueryParams}`; // Update iframe src with new query params
             console.log('Iframe refreshed with params:', newQueryParams);
         }, 10000); // Refresh every 60 seconds
